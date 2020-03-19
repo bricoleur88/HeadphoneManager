@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html"; charset=UTF-8>
+        <title>Title</title>
+    </head>
+    
+    <body>
+        <p>Register Headphone</p>
+        <form action="" method="post">
+        {% csrf_token %}
+            name : <input type="text" name="name"></br>
+            serial : <input type="text" name="serial number"></br>
+            <input type="submit" name="Register"></br>
+        </form>
+    </body>
+</html>

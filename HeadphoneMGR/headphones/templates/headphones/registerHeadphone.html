@@ -8,10 +8,10 @@
     
     <body>
         <p>Register Headphone</p>
-        <form action="" method="post">
+        <form action="{% url 'headphones:regConHeadphone' %}" method="post">
         {% csrf_token %}
             name : <input type="text" name="name"></br>
-            serial : <input type="text" name="serial number"></br>
+            serial : <input type="text" name="serial"></br>
             <input type="submit" name="Register"></br>
         </form>
     </body>

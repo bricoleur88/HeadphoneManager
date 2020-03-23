@@ -21,4 +21,7 @@ from . import views    # 어떤 것으로 들어오던 views로
 app_name = 'users'
 urlpatterns= [
     path('reg/', views.regUser, name='reg'), # url이 users/reg 로 들어왔을 때 regUser 함수 (view에서 만들어야하는)를 실행한다
+    path('regCon/', views.regConUser, name='regCon'),
+    path('all/', views.readUserAll, name='userAll'), # views에서 userAll 선언한것으로 이름 바꿔줌 ..
+    
 ]

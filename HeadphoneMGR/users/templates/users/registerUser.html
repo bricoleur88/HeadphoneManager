@@ -8,7 +8,7 @@
     
     <body>
         <p>Register User</p>
-        <form action="" method="post">
+        <form action="{% url 'users:regCon' %}" method="POST">
         {% csrf_token %}
             name : <input type="text" name="name"></br>
             division : <input type="text" name="division"></br>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html"; charset=UTF-8>
+        <title>Title</title>
+    </head>
+    
+    <body>
+        <p>Read Headphones</p>
+        {% if headphone_list %}
+        <ol>
+            {% for s in headphone_list %}
+            <li>
+                <a href="#none">{{s.h_name}}</a></br>
+                <a href="#none">{{s.h_serial}}</a></br>
+                <a href="#none">수정</a>
+                <a href="#none">삭제</a></br>
+            </li>
+            {% endfor %}
+        </ol>
+        {% else %}
+            <p>Headphone : 0</p>
+        {% endif %}
+        
+        </br>
+
+        <a href="#none">신규헤드폰 등록</a>
+
+    </body>
+</html>

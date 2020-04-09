@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html"; charset=UTF-8>
+        <title>Title</title>
+    </head>
+    
+    <body>
+        <p>Modify Headphone</p>
+        
+        {% if headphone_info %}
+            <form action="{% url 'headphones:modCon' %}" method="post">
+                {% csrf_token %}
+                name : {{headphone_info.h_name}} </br>
+                <input type="hidden" name="name" value={{headphone_info.h_name}}></br>
+                serial : <input type="text" name="serial" value={{headphone_info.h_serial}}></br>
+                <input type="submit" name="Modify"></br>
+            </form>
+        
+        {% else %}
+            <p>error</p>
+        
+        {% endif %}
+        
+
+    </body>
+</html>

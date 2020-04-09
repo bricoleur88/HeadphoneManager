@@ -14,13 +14,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path, include, re_path
-from . import views    # 어떤 것으로 들어오던 views로 
+from . import views    # 어떤 것으로 들어오던 views로
 
-# 실질적으로 headphones에서 사용할 urls 패턴들만 관리하기위해.. 
+# 실질적으로 headphones에서 사용할 urls 패턴들만 관리하기위해..
 
 app_name = 'headphones'
 urlpatterns= [
     path('reg/', views.regHeadphone, name='reg'), # url이 headphones/reg 로 들어왔을 때 regHeadphone 함수 (view에서 만들어야하는)를 실행한다
     path('regCon/', views.regConHeadphone, name='regConHeadphone'),
     path('all/', views.readHeadphoneAll, name='readheadphoneAll'), # views에서 readHeadphoneAll 선언한것으로 이름 바꿔줌 ..
+    path('<str:name>/det/', views.detHeadphone, name='headDet'),
+    path('<str:name>/mod/', views.readHeadphoneOne, name='headMod'),
+    path('modCon/', views.modConHeadphone, name='modCon'),
+    path('<str:name>/del/', views.delConHeadphone, name='headDel'),
 ]

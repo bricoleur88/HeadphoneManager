@@ -12,10 +12,9 @@
         <ol>
             {% for s in headphone_list %}
             <li>
-                <a href="#none">{{s.h_name}}</a></br>
+                <a href="{% url 'headphones:headDet' s.h_name %}">{{s.h_name}}</a></br>
                 <a href="#none">{{s.h_serial}}</a></br>
-                <a href="#none">수정</a>
-                <a href="#none">삭제</a></br>
+
             </li>
             {% endfor %}
         </ol>
@@ -25,7 +24,7 @@
         
         </br>
 
-        <a href="#none">신규헤드폰 등록</a>
+        <a href="{% url 'headphones:reg' %}">신규헤드폰 등록</a>
 
     </body>
 </html>

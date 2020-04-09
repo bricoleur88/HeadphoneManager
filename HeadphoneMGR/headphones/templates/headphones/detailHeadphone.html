@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html"; charset=UTF-8>
+        <title>Title</title>
+    </head>
+    
+    <body>
+        <p>Detail Headphones</p>
+        {% if headphone_info %}
+            name: {{headphone_info.h_name}}</br>
+            serial: {{headphone_info.h_serial}}</br>
+        {% else %}
+            <p>student: 0</p>
+        {% endif %}
+        
+        </br>
+
+        <a href="{% url 'headphones:headMod' headphone_info.h_name %}">수정</a>
+        <a href="{% url 'headphones:headDel' headphone_info.h_name %}">삭제</a>
+        <a href="{% url 'headphones:readheadphoneAll' %}">헤드폰리스트</a>
+        <a href="{% url 'headphones:reg' %}">신규헤드폰등록</a>
+
+    </body>
+</html>

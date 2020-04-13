@@ -12,18 +12,13 @@ Class-based views
 Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-    
-    urlpatterns.. 처음프로젝트 만들면 app 마다 만들어줘도 지금의 urls.py에서만 찾음 app 쪽의 urls.py로 연결 걸어주는게 필요
-    1. use 'include'
 """
-from django.contrib import admin
 from django.urls import path, include, re_path
+from . import views    # 어떤 것으로 들어오던 views로
 
 
+app_name = 'main'
 urlpatterns= [
-    path('admin/', admin.site.urls),
-    path('headphones/', include('headphones.urls')),  # go to urls.py in the headphones app folder
-    path('users/', include('users.urls')),             # go to urls.py in the users app folder
-    path('main/', include('main.urls')),
-    
+    path('', views.main, name='main'), 
+    path('regCon/', views.regHeadphone, name='regHeadphone'),
 ]

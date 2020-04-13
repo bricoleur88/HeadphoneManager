@@ -31,14 +31,15 @@ ALLOWED_HOSTS = ['*'] # disallowedhost error시 '*' 추가
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'headphones.apps.HeadphonesConfig', # headphones application 등록
-    'users.apps.UsersConfig', #users application 등록
+    'django.contrib.admin',                # Django admin app (기본)
+    'django.contrib.auth',                 # Django 인증 (기본)
+    'django.contrib.contenttypes',         # 다양한 모델데이터 관리 (기본)
+    'django.contrib.sessions',             # 클라이언트 정보를 세션에서 관리 프레임워크 (기본)
+    'django.contrib.messages',             # 컨트롤러에서 발생한 정보를 뷰에서 쉽게 접근하도록 연결 (기본)
+    'django.contrib.staticfiles',          # html, css, js 등의 정적파일들 관리 (기본)
+    'headphones.apps.HeadphonesConfig',     # headphones application 등록(테스트코드)
+    'users.apps.UsersConfig',               # users application 등록(테스트코드)
+    'main.apps.MainConfig',                 # main app 등록
 ]
 
 MIDDLEWARE = [

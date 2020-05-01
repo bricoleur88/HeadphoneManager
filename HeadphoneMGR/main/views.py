@@ -59,5 +59,21 @@ def retHeadphone(request, pk):
     
     context = {'return': qs}    
     return render(request, 'returnHeadphone.html', context)
+
+# 사용불가 헤드폰 재활성
+def changeState(request, pk):
+    qs = HeadphoneMain.objects.get(pk=pk)
+    qs.hp_state = '사용가능'
+    qs.save()
+    return HttpResponseRedirect(reverse('main:main'))
+
+# 사용불가 헤드폰 삭제
+def delete(request, pk):
+    qs = HeadphoneMain.objects.get(pk=pk)
+    qs.delete()
+    return HttpResponseRedirect(reverse('main:main'))
+
+    
+    
     
 

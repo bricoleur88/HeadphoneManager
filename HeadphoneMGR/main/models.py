@@ -10,7 +10,7 @@ class HeadphoneMain(models.Model):
     hp_rDetail = models.TextField(null=True)
     hp_receiver = models.CharField(max_length=100, null=True)
     hp_checker = models.CharField(max_length=100, null=True)
-    hp_state = models.CharField(max_length=100, null=True)
+    hp_state = models.CharField(max_length=100)
     
     def __str__(self):
-        return self.hp_serial
+        return self.hp_state

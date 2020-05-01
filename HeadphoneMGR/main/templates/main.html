@@ -79,7 +79,7 @@
                 <!-- 템플릿에서 제공하는 동적 데이터 바인딩으로 해결해야 하는 영역 -->
                 <tbody>
                     {% for info in headphone_list %}
-                        {% if info.hp_state == 사용불가 %}
+                        {% if info.hp_state == "사용불가" %}
                             <tr class="danger">
                                 <td>{{ info.pk }}</td>
                                 <td>{{ info.hp_model }}</td>
@@ -91,8 +91,8 @@
                                 <td>{{ info.hp_receiver }}</td>
                                 <td>{{ info.hp_checker }}</td>
                                 <td>{{ info.hp_state }}</td>
-                                <td><a href="">삭제하기</a></td>
-                                <td></td>
+                                <td><a href="change/{{ info.pk }}/change">사용전환</a></td>
+                                <td><a href="delete/{{ info.pk }}/delete">삭제하기</a></td>
                             </tr>
                         {% else %}
                             <tr class="active">

@@ -49,20 +49,20 @@
         </header>
 		<!-- 헤드폰 지급하기 입력기능 -->
         <section>
-            <form class="form-horizontal" action="" method="POST">
+            <form class="form-horizontal" method="POST">
                 {% csrf_token %}
                 <div class="form-group">
                   <div class="col-sm-10">
-                    <p>모델명 : </p>
-					<p>일련번호 :</p>
+                    <p>모델명 : {{ provide.hp_model }}</p>
+					<p>일련번호 : {{ provide.hp_serial }}</p>
 					<p>지급일 : <input type="text" id="datepicker" name="p_date"></p>
 					<p>지급 내용 : 	<input type="text" class="form-control" id="equipment_serial" name="p_detail" placeholder="지급내용을 입력하세요"></p></br>
 					<p>인수자 : <input type="text" class="form-control" id="equipment_serial" name="receiver" placeholder="인수자를 입력하세요"></p></br>
 					<p>확인자 : <input type="text" class="form-control" id="equipment_serial" name="checker" placeholder="확인자를 입력하세요"></p></br>
 					<p>상태선택: 
 					<select name="state" name="state">
-						<option value="1">사용가능</option>
-						<option value="2">사용불가</option>
+						<option value="사용가능">사용가능</option>
+						<option value="사용불가">사용불가</option>
 					</select>
 					</p>
 				  </div>

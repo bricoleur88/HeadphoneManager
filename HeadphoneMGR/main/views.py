@@ -26,11 +26,38 @@ def regHeadphone(request):
 
     return HttpResponseRedirect(reverse('main:main'))
 
-# 선택한 헤드폰의 지급하기 페이지로 이동
+# 1. 선택한 헤드폰의 지급하기 페이지로 이동 
+# 2. POST로 들어왔으면, DB 수정하는것으로 보고 if문 타서 DB반영 후 refresh
 def provHeadphone(request, pk):
-    return render(request, 'provideHeadphone.html')
-
-# 선택한 헤드폰의 반납하기 페이지로 이동
-def retHeadphone(request, pk):
-    return render(request, 'returnHeadphone.html')
+    qs = HeadphoneMain.objects.get(pk=pk)
     
+    if request.method == "POST":
+        qs.hp_pDate = request.POST['p_date']
+        qs.hp_pDetail = request.POST['p_detail']
+        qs.hp_receiver = request.POST['receiver']
+        qs.hp_checker = request.POST['checker']
+        qs.hp_state = request.POST['state']
+        qs.save()
+        return HttpResponseRedirect(reverse('main:main'))
+    
+    context = {'provide': qs}
+    return render(request, 'provideHeadphone.html', context)
+
+# 1.선택한 헤드폰의 반납하기 페이지로 이동
+# 2.POST로 들어왔으면, DB 수정으로 판단하여 main refresh 할 수 있도록
+def retHeadphone(request, pk):
+    qs = HeadphoneMain.objects.get(pk=pk)
+    
+    if request.method == "POST":
+        qs.hp_rDate = request.POST['r_date']
+        qs.hp_rDetail = request.POST['r_detail']
+        qs.hp_receiver = request.POST['receiver']
+        qs.hp_checker = request.POST['checker']
+        qs.hp_state = request.POST['state']
+        qs.save()
+        return HttpResponseRedirect(reverse('main:main'))
+    
+    context = {'return': qs}    
+    return render(request, 'returnHeadphone.html', context)
+    
+

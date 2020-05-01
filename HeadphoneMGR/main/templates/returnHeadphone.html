@@ -1,0 +1,80 @@
+
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>반납하기 HTML</title>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+    <style type="text/css">
+        header {
+            text-align: center;
+            padding: 5px 0px;
+        }
+        nav {
+            text-align: right;
+            padding: 5px 0px;
+        }
+    </style>
+	<!-- jQuery datepicker script -->
+	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+		<script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+	
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+	
+		<script>
+			$(function() {
+				$( ".datepicker" ).datepicker( {
+					dateFormat:"yy-mm-dd"
+				});
+			});
+		</script>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <p>접속자 : <span>관리자</span> <a href="#">로그아웃</a></p>
+        </nav>
+        <header>
+            <h1>헤드폰 반납하기</h1>
+        </header>
+		<!-- 헤드폰 반납하기 입력기능 -->
+        <section>
+            <form class="form-horizontal" action="" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                  <div class="col-sm-10">
+                    <p>모델명 : </p>
+					<p>일련번호 : </p>
+					<p>반납일 : <input type="text" class="datepicker" name="r_date"></p>
+					<p>반납 내용 : 	<input type="text" class="form-control" id="equipment_serial" name="r_detail" placeholder="지급내용을 입력하세요"></p></br>
+					<p>인수자 : <input type="text" class="form-control" id="equipment_serial" name="receiver" placeholder="인수자를 입력하세요"></p></br>
+					<p>확인자 : <input type="text" class="form-control" id="equipment_serial" name="checker" placeholder="확인자를 입력하세요"></p></br>
+					<p>상태선택: 
+					<select name="state" name="state">
+						<option value="1">사용가능</option>
+						<option value="2">사용불가</option>
+					</select>
+					</p>
+				  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">반납확인</button>
+                  </div>
+                </div>
+            </form>   
+        </section>
+        <!-- 헤드폰 반납하기 입력기능 끝-->
+ </body>
+</html>

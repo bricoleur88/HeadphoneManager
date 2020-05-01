@@ -27,18 +27,18 @@
         }
     </style>
 	<!-- jQuery datepicker script -->
-	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-		<script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-	
-		<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-	
-		<script>
-			$(function() {
-				$( ".datepicker" ).datepicker( {
-					dateFormat:"yy-mm-dd"
-				});
-			});
-		</script>
+	<!-- jQuery datepicker script -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="./jquery-ui-1.12.1/datepicker-ko.js"></script>
+    <script>
+        $(function(){
+            $("#datepicker").datepicker({
+                dateFormat:"yy-mm-dd"
+                });
+            });
+    </script>
 </head>
 <body>
     <div class="container">
@@ -56,7 +56,7 @@
                   <div class="col-sm-10">
                     <p>모델명 : </p>
 					<p>일련번호 : </p>
-					<p>반납일 : <input type="text" class="datepicker" name="r_date"></p>
+					<p>반납일 : <input type="text" id="datepicker" name="r_date"></p>
 					<p>반납 내용 : 	<input type="text" class="form-control" id="equipment_serial" name="r_detail" placeholder="지급내용을 입력하세요"></p></br>
 					<p>인수자 : <input type="text" class="form-control" id="equipment_serial" name="receiver" placeholder="인수자를 입력하세요"></p></br>
 					<p>확인자 : <input type="text" class="form-control" id="equipment_serial" name="checker" placeholder="확인자를 입력하세요"></p></br>

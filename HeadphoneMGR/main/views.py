@@ -26,8 +26,8 @@ def regHeadphone(request):
 
     return HttpResponseRedirect(reverse('main:main'))
 
-# 1. 선택한 헤드폰의 지급하기 페이지로 이동 
-# 2. POST로 들어왔으면, DB 수정하는것으로 보고 if문 타서 DB반영 후 refresh
+# 1. 선택한 헤드폰의 지급하기 페이지(provideHeadphone.html) 이동 
+# 2. POST로 들어왔으면(provideHeadphone.html에서 작성한 폼에서 접근했다면), DB 수정하는것으로 보고 if문 타서 DB반영 후 refresh
 def provHeadphone(request, pk):
     qs = HeadphoneMain.objects.get(pk=pk)
     
@@ -72,6 +72,35 @@ def delete(request, pk):
     qs = HeadphoneMain.objects.get(pk=pk)
     qs.delete()
     return HttpResponseRedirect(reverse('main:main'))
+
+
+# 검색한 헤드폰 히스토리 조회
+# 1. main.html에서 serial 검색하면 값 받아옴
+# 2. searchHistory.html에 결과 띄우기
+def search_history(request):
+    search = request.GET['search']
+    if search:
+        headphone_search = HeadphoneMain.objects.filter(hp_serial__icontains=search)
+        return render(request, 'searchHistory.html', {'headphone_search' : headphone_search})
+    
+    else:
+        headphone_search = HeadphoneMain.objects.all()
+        return render(request, 'searchHistory.html', {'headphone_search' : headphone_search})
+
+    
+# 사용 안하는 코드 
+
+#def search_history(request):
+#    history = HeadphoneMain.objects.all() # 테이블의 모든 objects를 keyword에 저장
+#    pick = HeadphoneMain.objects.filter(hp_serial=search) # hp_seirial 필드가 검색한 시리얼과 일치하는 Row들 가져옴
+    
+#    if search is 'ALL':
+#        return render(request, 'searchHistory.html', {'headphone_search': history})
+#    
+#    else:
+#        return render(request, 'searchHistory.html', {'headphone_search': pick})
+        
+
 
     
     

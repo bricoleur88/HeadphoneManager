@@ -1,0 +1,70 @@
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>헤드폰 히스토리</title>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+    <style type="text/css">
+        header {
+            text-align: center;
+            padding: 5px 0px;
+        }
+        nav {
+            text-align: right;
+            padding: 5px 0px;
+        }
+    </style>
+</head>
+
+
+<body>
+
+        <!-- 헤드폰 히스토리 시작 -->
+        <section>
+			<h2>헤드폰 히스토리</h2>        
+            <table class="table">
+                <thead>
+                    <tr>                        
+                        <th>모델명</th>
+                        <th>일련번호</th>
+                        <th>지급일</th>
+                        <th>내용</th>
+                        <th>반납일</th>
+                        <th>내용</th>
+						<th>인수자</th>
+						<th>확인자</th>
+						<th>상태</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for search in headphone_search %}
+                            <tr class="history">                                
+                                <td>{{ search.hp_model }}</td>
+                                <td>{{ search.hp_serial }}</td>
+                                <td>{{ search.hp_pDate }}</td>
+                                <td>{{ search.hp_pDetail }}</td>
+                                <td>{{ search.hp_rDate }}</td>
+                                <td>{{ search.hp_rDetail }}</td>
+                                <td>{{ search.hp_receiver }}</td>
+                                <td>{{ search.hp_checker }}</td>
+                                <td>{{ search.hp_state }}</td>
+                            </tr>                    
+                    {% endfor %}
+                </tbody>
+            </table>
+            </section>
+            
+        <!-- 헤드폰 히스토리 끝 -->    
+</body>
+</html>

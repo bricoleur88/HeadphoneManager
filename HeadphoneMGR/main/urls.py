@@ -21,10 +21,10 @@ app_name = 'main'
 urlpatterns= [
     path('', views.main, name='main'), 
     path('regCon/', views.regHeadphone, name='regHeadphone'),
-    path('search/', include('hisdata.urls')),
     path('provide/<pk>/edit', views.provHeadphone, name='provide'),
     path('return/<pk>/edit', views.retHeadphone, name='return'),
     path('change/<pk>/change', views.changeState, name='changeState'),
     path('delete/<pk>/delete', views.delete, name='delete'),
+    path('search/', views.search_history, name='search'),
 
 ]

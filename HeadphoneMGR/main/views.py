@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from main.models import HeadphoneMain
+from main.models import HeadphoneMain, History
 
 # Create your views here.
 
@@ -23,11 +23,15 @@ def regHeadphone(request):
 
     qs = HeadphoneMain(hp_model=name, hp_serial=serial, hp_state='사용가능')
     qs.save()     # db 저장
+    
+    hs = History(h_model=name, h_serial=serial, h_state='사용가능')
+    hs.save()
 
     return HttpResponseRedirect(reverse('main:main'))
 
 # 1. 선택한 헤드폰의 지급하기 페이지(provideHeadphone.html) 이동 
 # 2. POST로 들어왔으면(provideHeadphone.html에서 작성한 폼에서 접근했다면), DB 수정하는것으로 보고 if문 타서 DB반영 후 refresh
+# 3. History DB에 내용 백업
 def provHeadphone(request, pk):
     qs = HeadphoneMain.objects.get(pk=pk)
     
@@ -38,6 +42,18 @@ def provHeadphone(request, pk):
         qs.hp_checker = request.POST['checker']
         qs.hp_state = request.POST['state']
         qs.save()
+        
+        name = qs.hp_model
+        serial = qs.hp_serial
+        date = request.POST['p_date']
+        detail = request.POST['p_detail']
+        receiver = request.POST['receiver']
+        checker = request.POST['checker']
+        state = request.POST['state']
+        
+        hs = History(h_model=name , h_serial=serial , h_pDate=date , h_pDetail=detail , h_receiver=receiver , h_checker=checker , h_state=state)
+        hs.save()
+        
         return HttpResponseRedirect(reverse('main:main'))
     
     context = {'provide': qs}
@@ -45,6 +61,7 @@ def provHeadphone(request, pk):
 
 # 1.선택한 헤드폰의 반납하기 페이지로 이동
 # 2.POST로 들어왔으면, DB 수정으로 판단하여 main refresh 할 수 있도록
+# 3.History DB에 내용 백업
 def retHeadphone(request, pk):
     qs = HeadphoneMain.objects.get(pk=pk)
     
@@ -55,6 +72,18 @@ def retHeadphone(request, pk):
         qs.hp_checker = request.POST['checker']
         qs.hp_state = request.POST['state']
         qs.save()
+        
+        name = qs.hp_model
+        serial = qs.hp_serial
+        date = request.POST['r_date']
+        detail = request.POST['r_detail']
+        receiver = request.POST['receiver']
+        checker = request.POST['checker']
+        state = request.POST['state']
+        
+        hs = History(h_model=name , h_serial=serial , h_rDate=date , h_rDetail=detail , h_receiver=receiver , h_checker=checker , h_state=state)
+        hs.save()
+        
         return HttpResponseRedirect(reverse('main:main'))
     
     context = {'return': qs}    
@@ -75,16 +104,16 @@ def delete(request, pk):
 
 
 # 검색한 헤드폰 히스토리 조회
-# 1. main.html에서 serial 검색하면 값 받아옴
+# 1. main.html에서 serial 검색하면 History 테이블에서 값 받아옴
 # 2. searchHistory.html에 결과 띄우기
 def search_history(request):
     search = request.GET['search']
     if search:
-        headphone_search = HeadphoneMain.objects.filter(hp_serial__icontains=search)
+        headphone_search = History.objects.filter(h_serial__icontains=search)
         return render(request, 'searchHistory.html', {'headphone_search' : headphone_search})
     
     else:
-        headphone_search = HeadphoneMain.objects.all()
+        headphone_search = History.objects.all()
         return render(request, 'searchHistory.html', {'headphone_search' : headphone_search})
 
     

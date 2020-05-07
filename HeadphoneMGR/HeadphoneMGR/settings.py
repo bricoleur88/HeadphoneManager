@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',               # users application 등록(테스트코드)
     'main.apps.MainConfig',                 # main app 등록
     'hisdata.apps.HisdataConfig',           # hisdata app 등록
+    'import_export',                        # DB export and import with excel in admin 기능 등록
 ]
 
 MIDDLEWARE = [
@@ -102,6 +103,9 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+# import-export optional code
+IMPORT_EXPORT_USE_TRANSACTIONS = True
 
 
 # Internationalization

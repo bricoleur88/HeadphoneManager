@@ -28,3 +28,4 @@ class History(models.Model):
     
     def __str__(self):
         return self.h_state
+    
